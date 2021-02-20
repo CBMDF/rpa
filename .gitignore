@@ -131,3 +131,10 @@ notas-pessoais.md
 .gitignore
 .vscode
 debug.log 
+client_certificate.p12
+temp.py
+client_certificate.pfx
+cert.key
+cert.cer
+cert.prf
+tela.png
