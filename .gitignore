@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+notas-pessoais.md
+.gitignore
+.vscode
+debug.log 
