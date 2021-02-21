@@ -21,6 +21,17 @@ env\Scripts\activate
 (env) pip install -r requirements.txt
 ```
 
+## Exemplo com código Python
+
+```python
+from plugins.browser import Browser
+
+url = 'https://www.learningcontainer.com/sample-zip-files/'
+browser = Browser()
+browser.openUrl(url=url)
+browser.click("//html/body/div[1]/div/div[1]/main/article/div/div[2]/p[5]/a")
+```
+
 ## Plugins
 
 ```yaml
