@@ -22,7 +22,10 @@ class Browser(Plugin):
     profile_path = os.path.join(os.path.dirname(
         os.path.realpath(__file__)), 'firefox-profile')
     downloadPath = os.path.join(profile_path, "Downloads")
-    mimeTypes = "application/zip,application/octet-stream,application/pdf"
+
+    # https://docs.microsoft.com/en-us/previous-versions/office/office-2007-resource-kit/ee309278(v=office.12)?redirectedfrom=MSDN
+    mimeTypes = "application/zip, application/octet-stream, application/pdf, application/x-zip-compressed, multipart/x-zip, application/x-rar-compressed, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.ms-access"
+
     desired_capabilities = webdriver.DesiredCapabilities.FIREFOX.copy()
     profile = webdriver.FirefoxProfile(profile_path)
 
@@ -67,6 +70,10 @@ class Browser(Plugin):
         elem = self.find_element(element)
         elem.clear()
         elem.send_keys(value)
+
+    def press_enter(self, element):
+        elem = self.find_element(element)
+        elem.send_keys(Keys.RETURN)
 
     def find_element(self, element):
 
