@@ -1,8 +1,10 @@
 # CBMDF RPA
 
-Robotic process automation
+**Robotic Process Automation**
 
-Utiliza um arquivo yaml inspirado no GitHub actions para configurar as ações automáticas que serão executadas.
+<img src="https://i.imgur.com/oSCAcdm.png" width="120" alt="Icons made by Good Ware from www.flaticon.com">
+
+Utiliza um arquivo [yaml](https://pt.wikipedia.org/wiki/YAML) inspirado no GitHub Actions para configurar as ações automáticas que serão executadas.
 
 ## Instalação
 
