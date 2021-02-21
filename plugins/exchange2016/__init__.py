@@ -12,4 +12,6 @@ class exchange2016(Browser):
         super().fill('//*[@id="password"]', password)
         super().click('/html/body/form/div/div[2]/div/div[9]/div')
 
-    def search_message()
+    def search_message(self, search_query):
+        super().fill('//*[@id="txtSch"]', search_query)
+        super().press_enter('//*[@id="txtSch"]')
