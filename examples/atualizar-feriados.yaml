@@ -1,6 +1,6 @@
 # Este robô automatiza o processo de baixar um arquivo CSV anexo a uma mensagem de e-mail
 # e gravar em um determinada tabela do banco de dados
-# Parametros dinâmicos podem ser inseridos através de argumentos nomeados. 
+# Parametros dinâmicos podem ser inseridos através de argumentos nomeados.
 # e.g rpa.py -r atualizar-feriados.yaml YEAR=`date +"%Y"`
 # Argumentos podem ser acessador por um placeholder `args` e o nome do parâmetro, por exemplo, ${{ arg.YEAR }}
 
@@ -22,46 +22,45 @@ jobs:
   baixar-anexo-job:
     name: Baixar anexo
     timeout-minutes: 10
-    working-directory: ./tmp/${{ robot.ID }}/browser-profile
-    - uses: exchange2016    
+    working-directory: ./tmp/${{ robot.ID }}/browse-profile
+    uses: exchange2016
     steps:
       - name: Autenticação
       - function: login
-      with: 
-        url: 'https://cas.exemplo.com.br/'
-        username: ${{ secrets.WEBMAIL_USERNAME }}
-        password: ${{ secrets.WEBMAIL_PASSWORD }}
-    
+        with:
+          url: "https://cas.exemplo.com.br/"
+          username: ${{ secrets.WEBMAIL_USERNAME }}
+          password: ${{ secrets.WEBMAIL_PASSWORD }}
+
       - name: Buscar mensagem
       - function: search_message
-      with:         
-        search_query: 'From:usuario@exemplo.com.br AND sent:10/1/${{ args.YEAR }}..10/31/${{ args.YEAR }} AND HasAttachment:yes'
+        with:
+          search_query: "From:usuario@exemplo.com.br AND sent:10/1/${{ args.YEAR }}..10/31/${{ args.YEAR }} AND HasAttachment:yes"
 
       - name: Abrir mensagem
       - function: click
-      with: 
-        element: '/html/body/form/table/tbody/tr[2]/td[3]/table/tbody/tr[3]/td/div/table/tbody/tr[3]/td[6]/h1/a'
+        with:
+          element: "/html/body/form/table/tbody/tr[2]/td[3]/table/tbody/tr[3]/td/div/table/tbody/tr[3]/td[6]/h1/a"
 
       - name: Baixar anexo
       - function: click
-      with: 
-        element: '//*[@id="lnkAtmt"]'
+        with:
+          element: '//*[@id="lnkAtmt"]'
 
   atualizar-tabela-job:
-      needs: baixar-anexo-job
-      name: Atualiar tabela
-      timeout-minutes: 10
-      working-directory: ./tmp/${{ robot.ID }}/browser-profile
-      - uses: postgresql    
-      steps:
-        - name: Importar CSV
-        - function: csv_import
-        with: 
-          file: 'feriados.csv'
+    needs: baixar-anexo-job
+    name: Atualiar tabela
+    timeout-minutes: 10
+    working-directory: ./tmp/${{ robot.ID }}/browser-profile
+    uses: postgresql
+    steps:
+      - name: Importar CSV
+      - function: csv_import
+        with:
+          file: "feriados.csv"
           header: True
           hostname: ${{ secrets.POSTGRESQL_HOSTNAME }}
           port: 5432
           database: ${{ secrets.POSTGRESQL_DATABASE }}
           username: ${{ secrets.POSTGRESQL_USERNAME }}
           password: ${{ secrets.POSTGRESQL_PASSWORD }}
-    
