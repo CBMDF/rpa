@@ -10,9 +10,11 @@ Configure seu Outlook Web para versão light.
 
 ### Advanced Query Search (AQS)
 
-`From:JerriFrye AND HasAttachment:yes`
+As buscas de mensagens podem ser feitas utilizando-se da sintaxe _Advanced Query Search_ (AQS) como no exemplo a seguir. Note que é popssível filtrar, inclusive, por um intervalo de datas no formato MM/DD/AAAA.
 
-Referência completa em: [Advanced Query Search (AQS)](https://support.microsoft.com/en-us/office/search-mail-and-people-in-outlook-com-88108edf-028e-4306-b87e-7400bbb40aa7)
+`From:usuario@exemplo.com.br AND sent:10/1/2019..10/31/2019 AND HasAttachment:yes`
+
+Referência completa em: [Advanced Query Search (AQS)](https://support.microsoft.com/en-us/office/search-mail-and-people-in-outlook-com-88108edf-028e-4306-b87e-7400bbb40aa7) ou ainda em [Search-Mailbox (Exchange 2013, 2016, 2019, Online): Attributes](https://www.codetwo.com/admins-blog/search-mailbox-exchange-2013-2016-online-attributes/)
 
 ## Exchange Versions
 
