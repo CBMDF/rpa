@@ -48,6 +48,7 @@ jobs:
         element: '//*[@id="lnkAtmt"]'
 
   atualizar-tabela-job:
+      needs: baixar-anexo-job
       name: Atualiar tabela
       timeout-minutes: 10
       working-directory: ./tmp/${{ robot.ID }}/browser-profile
