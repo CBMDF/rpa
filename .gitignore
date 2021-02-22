@@ -132,7 +132,6 @@ notas-pessoais.md
 .vscode
 debug.log 
 client_certificate.p12
-temp.py
 client_certificate.pfx
 cert.key
 cert.cer
@@ -140,5 +139,5 @@ cert.prf
 tela.png
 browser-cache
 firefox-profile
-temp2.py
 sample-zip-file.zip
+local-test*
