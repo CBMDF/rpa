@@ -3,8 +3,9 @@ from selenium.webdriver.common import service
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as E
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 import platform
 import os
@@ -46,9 +47,9 @@ class Browser(Plugin):
 
     driver = webdriver.Firefox(firefox_profile=profile)
 
-    driver.set_window_size(1094, 695)
+    driver.set_window_size(1366, 768)
     # wait = WebDriverWait(driver, 10)
-    driver.implicitly_wait(10)  # seconds
+    driver.implicitly_wait(1)  # seconds
 
     def __init__(self, profilePath=''):
         super().__init__()
@@ -64,7 +65,17 @@ class Browser(Plugin):
         self.driver.set_script_timeout(10)
 
     def click(self, element):
-        self.find_element(element).click()
+        self.driver.set_script_timeout(10)
+        t = 0
+        while t < 10:
+            try:
+                found = self.find_element(element).click()
+                if not found:
+                    break
+            except:
+                pass
+            time.sleep(1)
+            self.driver.implicitly_wait(t)
 
     def fill(self, element, value):
         elem = self.find_element(element)
@@ -93,5 +104,6 @@ class Browser(Plugin):
                     except NoSuchElementException:
                         raise Exception(
                             'Elemento "{}" não encontrado na DOM'.format(element))
+                    return False
 
         return found_element
