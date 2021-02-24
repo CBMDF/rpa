@@ -1,6 +1,6 @@
 # Browser
 
-## Certificado cliente - Firefox
+## Importandocertificado cliente .p12 para o Trust Database Files cert8.db
 
 Comando exportar um certificado .p12 para ser utilizado pelo navegador.
 
@@ -12,6 +12,8 @@ pk12util -n custom-cert-name -d sql:cert_db/ -i /path/to/cert.p12
 
 Referência:
  - https://stackoverflow.com/questions/38337976/python-selenium-how-to-specify-a-client-certificate-to-use-in-client-ssl-authe
+ - https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/tools/NSS_Tools_certutil
+ - https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/tools/NSS_Tools_pk12util
 
 ## Seleção automática de certificado - Chrome
 
