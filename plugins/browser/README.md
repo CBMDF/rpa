@@ -1,6 +1,6 @@
 # Browser
 
-## Importandocertificado cliente .p12 para o Trust Database Files cert8.db
+## Importando certificado cliente .p12 para o Trust Database Files cert8.db
 
 Comando exportar um certificado .p12 para ser utilizado pelo navegador.
 
@@ -31,6 +31,9 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\AutoSelectCertificateForUrls]
 "1"="{\"pattern\": \"*\", \"filter\": {} }"
 ```
+
+Referência:
+ - https://cloud.google.com/docs/chrome-enterprise/policies/?policy=AutoSelectCertificateForUrls
 
 Para verificar se a política foi aplicada corretamente, abra no Chrome a seguinte URL: `chrome://policy/`
 
