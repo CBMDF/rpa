@@ -33,15 +33,17 @@ class gui(Plugin):
         else:
             return False
 
-    def click(self, reference_images, right_click=False):
+    def click(self, reference_images, right_click=False, Debug=False):
 
         location = None
         for image in reference_images:
             location = self.find_element(image)
             if location != None:
+                print(f'Reference {image} found on screen.')
                 break
             else:
-                print(f'Reference {image} not found on screen.')
+                if Debug:
+                    print(f'Reference {image} NOT found on screen.')
 
         if location != None:
             buttonx, buttony = pyautogui.center(location)
