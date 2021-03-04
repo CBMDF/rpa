@@ -2,7 +2,7 @@ from plugins import Plugin
 import xmltodict
 
 
-class nfexml(Plugin):
+class NFeXML(Plugin):
 
     def __init__(self):
         super().__init__()

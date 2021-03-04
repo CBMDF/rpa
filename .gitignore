@@ -141,3 +141,5 @@ browser-cache
 firefox-profile
 sample-zip-file.zip
 local-test*
+*.png
+*.jpg

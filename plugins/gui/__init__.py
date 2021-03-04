@@ -8,7 +8,7 @@ import pytesseract
 from PIL import Image
 
 
-class gui(Plugin):
+class GUI(Plugin):
 
     def __init__(self):
         super().__init__()

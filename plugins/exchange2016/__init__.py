@@ -1,7 +1,7 @@
 from plugins.browser import Browser
 
 
-class exchange2016(Browser):
+class Exchange2016(Browser):
 
     def __init__(self):
         super().__init__()
