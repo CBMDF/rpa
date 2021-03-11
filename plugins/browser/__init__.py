@@ -82,6 +82,10 @@ class Browser(Plugin):
         elem.clear()
         elem.send_keys(value)
 
+    def clear(self, element):
+        elem = self.find_element(element)
+        elem.clear()
+
     def press_enter(self, element):
         elem = self.find_element(element)
         elem.send_keys(Keys.RETURN)
