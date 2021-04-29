@@ -1,6 +1,6 @@
 '''
-Este script realiza o download e extração dos arquivos da base de dados públicos
-CNPJ e verifica a necessidade da atualização dessa base de dados.
+Este script realiza o download e descompacta os arquivos da base de dados públicos
+CNPJ e verifica a necessidade da atualização da base de dados.
 '''
 
 import requests, zipfile, shutil, sys, os
@@ -28,7 +28,7 @@ def download_file(url, address):
 
 def extract_files(file_address, final_directory):
     '''
-    Realiza a extração de um arquivo zip. Retorna um boolean = 'True' caso obtenha sucesso
+    Descompacta um arquivo zip. Retorna um boolean = 'True' caso obtenha sucesso
 
     file_address: Endereço do arquivo zip que será extraído
     final_directory: Diretório para qual o arquivo será extraído
@@ -83,7 +83,7 @@ def extract_csv_files_name(zip_files_name):
 def check_update(csv_files_name, ouput_dir):
     '''
     Percorre cada arquivo do diretório 'output_dir' e verifica se o arquivo existe dentro da lista 'csv_files_name'.
-    Retorna um boolean = 'False' se todos os arquivos pertecerem a lista e o número de arquivos ser igual ao tamanho da lista.
+    Retorna um boolean = 'False' se todos os arquivos pertecerem à lista e a quantidade de arquivos ser igual ao tamanho da lista.
     Caso contrário Retorna um boolean = 'True' indicando a necessidade de uma atualização.
     
     csv_files_name: Lista de nomes dos arquivos csv.
