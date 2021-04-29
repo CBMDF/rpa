@@ -1,6 +1,6 @@
 '''
-Este script realiza o download e descompacta os arquivos da base de dados públicos
-CNPJ e verifica a necessidade da atualização da base de dados.
+Este script realiza o download e descompacta os arquivos.zip da base de dados públicos
+CNPJ e verifica a necessidade de uma atualização da base de dados.
 '''
 
 import requests, zipfile, shutil, sys, os
