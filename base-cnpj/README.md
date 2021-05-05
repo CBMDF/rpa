@@ -1,8 +1,10 @@
 #   RPA - Dados públicos CNPJ
 
-Realiza o download e descompacta os arquivos.zip da base de dados públicos CNPJ.
+Realiza o download e descompacta os arquivos zip da base de dados públicos CNPJ.
 
 ## Instalação
+
+Abra o terminal no diretório base-cnpj e digite os seguintes comandos:
 
 ```console
 pip install virtualenv
@@ -18,6 +20,18 @@ Ative o ambiente virtual e instale as dependências
 env\Scripts\activate
 (env) pip install -r requirements.txt
 ```
+
+Para rodar o script
+```console
+python base_cnpj.py
+```
+
+
+## Agendador de Tarefas
+
+
+
+
 
 # ETL - Dados públicos CNPJ
 
