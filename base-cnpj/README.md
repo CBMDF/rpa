@@ -26,10 +26,14 @@ Para rodar o script
 python base_cnpj.py
 ```
 
-
 ## Agendador de Tarefas
+Preencha os campos da janela ações do Agendador de tarefas como informado abaixo: <br/>
 
+![alt text](https://i.imgur.com/iValV12.png)
 
+<b>Programa/Script :</b> Endereço do executável pythonw.exe, encontrado dentro da pasta Scripts do ambiente virtual. <br/>
+<b>Adicione argumentos:</b> Nome do script python. <br/>
+<b>Iniciar em:</b> Endereço do diretório base-cnpj em sua máquina. <br/>
 
 
 
