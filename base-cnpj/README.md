@@ -27,13 +27,14 @@ python base_cnpj.py
 ```
 
 ## Agendador de Tarefas
-Preencha os campos da janela ações do Agendador de tarefas como informado abaixo: <br/>
+
+Ao criar uma nova tarefa no Agendador de Tarefas preencha os campos da aba ações conforme indicado abaixo:
 
 ![alt text](https://i.imgur.com/iValV12.png)
 
-<b>Programa/Script :</b> Endereço do executável pythonw.exe, encontrado dentro da pasta Scripts do ambiente virtual. <br/>
-<b>Adicione argumentos:</b> Nome do script python. <br/>
-<b>Iniciar em:</b> Endereço do diretório base-cnpj em sua máquina. <br/>
+<b>- Programa/Script:</b> Endereço do executável pythonw.exe, encontrado dentro da pasta Scripts do ambiente virtual. <br/>
+<b>- Adicione argumentos:</b> Nome do script python. <br/>
+<b>- Iniciar em:</b> Endereço do diretório base-cnpj. <br/>
 
 
 
