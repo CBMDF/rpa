@@ -1,4 +1,3 @@
-from plugins import Plugin
 import numpy as np
 import pyautogui
 import imutils
@@ -6,6 +5,7 @@ import cv2
 import time
 import pytesseract
 from PIL import Image
+from plugins import Plugin
 
 
 class GUI(Plugin):
@@ -15,6 +15,12 @@ class GUI(Plugin):
 
     def find_element(self, reference_image):
         location = pyautogui.locateOnScreen(reference_image)
+
+        if location != None:
+            print(f'Reference {reference_image} found on screen.')
+        else:
+            print(f'Reference {reference_image} NOT found on screen.')
+
         return location
 
     def fill(self, reference_images, text, enter=False):
@@ -33,17 +39,15 @@ class GUI(Plugin):
         else:
             return False
 
-    def click(self, reference_images, right_click=False, Debug=False):
+    def click(self, reference_images, right_click=False):
 
         location = None
         for image in reference_images:
             location = self.find_element(image)
+
+            # One of reference images was found. Stop search.
             if location != None:
-                print(f'Reference {image} found on screen.')
                 break
-            else:
-                if Debug:
-                    print(f'Reference {image} NOT found on screen.')
 
         if location != None:
             buttonx, buttony = pyautogui.center(location)
