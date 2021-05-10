@@ -1,6 +1,8 @@
 # Browser
 
-## Importando certificado cliente .p12 para o Trust Database Files cert8.db
+## Importando certificado cliente .p12 para o Trust Database Files cert8.db do Mozilla Firefox
+
+_Observação: As extensões `.p12`  e `.pfx` correspondem ao mesmo tipo binário de arquivo padrão **PKCS#12**. A primeira é utilizada, principalmente, por navegadores da linha Netscape / Mozilla e sendo que a segunda, `.pfx`, foi adotada pela Microsoft em seus sistemas operacionais e navegadores._
 
 Comando exportar um certificado .p12 para ser utilizado pelo navegador.
 
