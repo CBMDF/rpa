@@ -4,7 +4,7 @@ Realiza o download e descompacta os arquivos zip da base de dados públicos CNPJ
 
 ## Instalação
 
-Abra o terminal no diretório base-cnpj e digite os seguintes comandos:
+Para instalação e criação do ambiente virtual, abra o terminal no diretório base-cnpj e digite os seguintes comandos:
 
 ```console
 pip install virtualenv
@@ -25,6 +25,7 @@ Para rodar o script
 ```console
 python base_cnpj.py
 ```
+Será criado o diretório output dentro da pasta base-cnpj, para receber os arquivos csv.
 
 ## Agendador de Tarefas
 
