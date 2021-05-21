@@ -46,11 +46,13 @@ Para a importação desses dados de CNPJ é utilizado o Pentaho, que subirá os 
 ### Instalação do Java JDK-8
 
 Para a instalação, tanto no Linux quanto no Windows, basta acessar o link abaixo:
+
 <https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html>
 
 ## Instalação do Postgresql
 
 Para a instalação no Windows basta acessar o link abaixo:
+
 <https://www.postgresql.org/download/>
 
 Quando finalizar o download, vamos abrir o arquivo de instalação. Você vai precisar: selecionar a basta onde vai ser instalado; escolher quais recursos instalar junto com o Postgresql (pode deixar todos marcados); escolher a pasta onde os dados do Postgres serão salvos; definir a senha de acesso do usuário; definir a porta que o Postgres irá rodar; escolher o idioma; depois vão aparecer mais 3 janelas que é só apertar em Next, Next e Finish.
