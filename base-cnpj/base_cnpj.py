@@ -3,8 +3,17 @@ Este script realiza o download e descompacta os arquivos.zip da base de dados p�
 CNPJ e verifica a necessidade de uma atualização da base de dados.
 '''
 
-import requests, zipfile, shutil, sys, os
+import requests
+import zipfile
+import shutil
+import sys
+import os
+import traceback
+import tqdm
+import signal
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
+
 
 def download_file(url, address):
     '''
@@ -13,18 +22,42 @@ def download_file(url, address):
     url: Url do download.
     address: Diretório em que o arquivo baixado será salvo.
     '''
+
     try:
         response = requests.get(url, stream=True)
+        full_url = urlparse(url)
+        file_name = os.path.basename(full_url.path)
+        file_size = int(response.headers['Content-Length'], 0)
+        chunk = 1
+        chunk_size = 1024
+        num_bars = int(file_size / chunk_size)
 
         with open(address, 'wb') as new_file:
-            for chunk in response.iter_content(chunk_size=1024):
-                new_file.write(chunk)
-    except:
-        status = False
-    else:
-        status = True
 
-    return status
+            try:
+
+                for chunk in tqdm.tqdm(
+                    # progressbar stays
+                    response.iter_content(chunk_size=chunk_size), total=num_bars, unit='KB', desc=file_name, leave=True
+                ):
+
+                    new_file.write(chunk)
+
+            except KeyboardInterrupt:
+                print(
+                    "Deseja realmente encerrar o processo de download? [s/N]")
+                choice = input().lower()
+                if choice == 's':
+                    exit(1)
+                else:
+                    pass
+
+        return True
+
+    except Exception as e:
+        print(traceback.format_exc())
+        return False
+
 
 def extract_files(file_address, final_directory):
     '''
@@ -35,13 +68,15 @@ def extract_files(file_address, final_directory):
     '''
     try:
         with zipfile.ZipFile(file_address, 'r') as zip_ref:
-                zip_ref.extractall(final_directory)
-    except:
+            zip_ref.extractall(final_directory)
+    except Exception as e:
         status = False
+        print(traceback.format_exc())
     else:
         status = True
 
     return status
+
 
 def extract_urls(elements):
     '''
@@ -55,6 +90,7 @@ def extract_urls(elements):
 
     return urls
 
+
 def extract_zip_files_name(urls):
     '''
     Obtém os nomes dos arquivos zip contidos nas urls. Retorna uma lista com nomes dos arquivos zip
@@ -66,6 +102,7 @@ def extract_zip_files_name(urls):
         zip_files_name.append(url.split("/")[-1])
 
     return zip_files_name
+
 
 def extract_csv_files_name(zip_files_name):
     '''
@@ -80,12 +117,13 @@ def extract_csv_files_name(zip_files_name):
 
     return csv_files_name
 
+
 def check_update(csv_files_name, ouput_dir):
     '''
     Percorre cada arquivo do diretório 'output_dir' e verifica se o arquivo existe dentro da lista 'csv_files_name'.
     Retorna um boolean = 'False' se todos os arquivos pertecerem à lista e a quantidade de arquivos ser igual ao tamanho da lista.
     Caso contrário Retorna um boolean = 'True' indicando a necessidade de uma atualização.
-    
+
     csv_files_name: Lista de nomes dos arquivos csv.
     output_dir: Diretório onde será verificado a necessidade da atualização.
     '''
@@ -101,6 +139,7 @@ def check_update(csv_files_name, ouput_dir):
         status = True
 
     return status
+
 
 def move_files(files_name, directory, final_directory):
     '''
@@ -119,12 +158,14 @@ def move_files(files_name, directory, final_directory):
             shutil.move(address, final_directory)
         except:
             status = False
-            print('Ocorreu um erro ao mover o arquivo {} para {}'.format(file_name, final_directory))
+            print('Ocorreu um erro ao mover o arquivo {} para {}'.format(
+                file_name, final_directory))
             break
         else:
             status = True
 
     return status
+
 
 def delete_files(directory, files_name):
     '''
@@ -134,7 +175,7 @@ def delete_files(directory, files_name):
     directory: Diretório do qual será excluído os arquivos.
     files_name: Lista de nomes dos arquivos que não devem ser deletados.
     '''
-    
+
     directory_files = os.listdir(directory)
 
     for directory_file in directory_files:
@@ -145,12 +186,14 @@ def delete_files(directory, files_name):
                 os.remove(address)
             except:
                 status = False
-                print('Ocorreu um erro ao excluir o arquivo {}'.format(directory_file))
+                print('Ocorreu um erro ao excluir o arquivo {}'.format(
+                    directory_file))
                 break
 
         status = True
 
     return status
+
 
 url = 'https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/cadastros/consultas/dados-publicos-cnpj'
 
@@ -166,14 +209,16 @@ soup = BeautifulSoup(response.text, 'html.parser')
 elements_found = soup.find_all(class_='external-link')
 
 
-urls = extract_urls(elements_found) # Chamada da função extract_urls
+urls = extract_urls(elements_found)  # Chamada da função extract_urls
 
-zip_files_name = extract_zip_files_name(urls) # Chamada da função extract_zip_files
+# Chamada da função extract_zip_files
+zip_files_name = extract_zip_files_name(urls)
 
-csv_files_name = extract_csv_files_name(zip_files_name) # Chamada da função extract_csv_files_name
+# Chamada da função extract_csv_files_name
+csv_files_name = extract_csv_files_name(zip_files_name)
 
 # Criar diretório 'files_dir'
-files_dir = 'files' # Diretório para arquivos zip
+files_dir = 'files'  # Diretório para arquivos zip
 
 if files_dir in os.listdir():
     shutil.rmtree(files_dir)
@@ -181,8 +226,8 @@ if files_dir in os.listdir():
 else:
     os.mkdir(files_dir)
 
-# Criar diretório 'output_dir' 
-output_dir = 'output' # Diretório final
+# Criar diretório 'output_dir'
+output_dir = 'output'  # Diretório final
 
 if not output_dir in os.listdir():
     os.mkdir(output_dir)
@@ -197,14 +242,16 @@ if status == False:
 
 # Download arquivos zip
 for i in range(len(urls)):
-    
+
     address = os.path.join(files_dir, zip_files_name[i])
-    status = download_file(urls[i], address) # Chamada da função download_file
+    status = download_file(urls[i], address)  # Chamada da função download_file
 
     if status == True:
-        print('Download {} concluído com êxito. ({} de {})'.format(zip_files_name[i], i+1, len(urls)))
+        print('Download {} concluído com êxito. ({} de {})'.format(
+            zip_files_name[i], i+1, len(urls)))
     elif status == False:
-        print('Ocorreu um erro com download do arquivo {}'.format(zip_files_name[i]))
+        print('Ocorreu um erro com download do arquivo {}'.format(
+            zip_files_name[i]))
         shutil.rmtree(files_dir)
         sys.exit()
 
@@ -212,14 +259,18 @@ for i in range(len(urls)):
 for i in range(len(zip_files_name)):
 
     address = os.path.join(files_dir, zip_files_name[i])
-    status = extract_files(address, files_dir) # Chamada da função extract_files
+    # Chamada da função extract_files
+    status = extract_files(address, files_dir)
 
     if status == True:
-        print('{} extraído com êxito.({} de {})'.format(zip_files_name[i], i+1, len(zip_files_name)))
-        os.remove(address) # Excluir arquivo zip já extraído
+        print('{} extraído com êxito.({} de {})'.format(
+            zip_files_name[i], i+1, len(zip_files_name)))
+        os.remove(address)  # Excluir arquivo zip já extraído
     elif status == False:
-        print('Ocorreu um erro ao extrair o arquivo {}.'.format(zip_files_name[i]))
-        shutil.rmtree(files_dir) # Remover todo diretório 'files_dir' em caso de erro na extração de um arquivo
+        print('Ocorreu um erro ao extrair o arquivo {}.'.format(
+            zip_files_name[i]))
+        # Remover todo diretório 'files_dir' em caso de erro na extração de um arquivo
+        shutil.rmtree(files_dir)
         sys.exit()
 
 
