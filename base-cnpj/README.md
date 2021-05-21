@@ -1,4 +1,4 @@
-#   RPA - Dados públicos CNPJ
+# RPA - Dados públicos CNPJ
 
 Realiza o download e descompacta os arquivos zip da base de dados públicos CNPJ.
 
@@ -22,9 +22,11 @@ env\Scripts\activate
 ```
 
 Para rodar o script
+
 ```console
 python base_cnpj.py
 ```
+
 Será criado o diretório output dentro da pasta base-cnpj, para receber os arquivos csv.
 
 ## Agendador de Tarefas
@@ -33,30 +35,23 @@ Ao criar uma nova tarefa no Agendador de Tarefas preencha os campos da aba açõ
 
 ![alt text](https://i.imgur.com/iValV12.png)
 
-<b>- Programa/Script:</b> Endereço do executável pythonw.exe, encontrado dentro da pasta Scripts do ambiente virtual. <br/>
-<b>- Adicione argumentos:</b> Nome do script python. <br/>
-<b>- Iniciar em:</b> Endereço do diretório base-cnpj. <br/>
+**- Programa/Script:** Endereço do executável pythonw.exe, encontrado dentro da pasta Scripts do ambiente virtual.
+**- Adicione argumentos:** Nome do script python.
+**- Iniciar em:** Endereço do diretório base-cnpj.
 
-
-
-# ETL - Dados públicos CNPJ
+## ETL - Dados públicos CNPJ
 
 Para a importação desses dados de CNPJ é utilizado o Pentaho, que subirá os arquivos para o banco de dados Postgresql. Para utilizar o Pentaho é necessário a instalação do Java jdk-8, e para a administração do Postgresql é preciso do pgAdmin4.
 
-
-## Java jdk-8
-
-#### Instalação 
+### Instalação do Java JDK-8
 
 Para a instalação, tanto no Linux quanto no Windows, basta acessar o link abaixo:
-https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html
+<https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html>
 
-## Postgresql
-
-#### Instalação 
+## Instalação do Postgresql
 
 Para a instalação no Windows basta acessar o link abaixo:
-https://www.postgresql.org/download/
+<https://www.postgresql.org/download/>
 
 Quando finalizar o download, vamos abrir o arquivo de instalação. Você vai precisar: selecionar a basta onde vai ser instalado; escolher quais recursos instalar junto com o Postgresql (pode deixar todos marcados); escolher a pasta onde os dados do Postgres serão salvos; definir a senha de acesso do usuário; definir a porta que o Postgres irá rodar; escolher o idioma; depois vão aparecer mais 3 janelas que é só apertar em Next, Next e Finish.
 
@@ -67,21 +62,21 @@ Por padrão, o repositório do Ubuntu vem com o PostgreSQL disponível, bastando
 ```console
 #sudo apt update
 ```
+
 ```console
 #sudo apt install postgresql postgresql-contrib
 ```
-#### Configuração
+
+### Configuração do PostgreSQL
 
 Depois de instalado o Postgres você vai procurar pelo programa pgAdmin4, que é uma plataforma para administrar o Postgres. Ele vai pedir a senha que você definiu na instalação e aí você vai começar a configurar criando um servidor, um banco, um schema e a partir daí começar a criar as tabelas e colunas baseadas no layout e no arquivo de base de dados de CNPJ.
 
-## Pentaho
-
-#### Instalação 
+## Instalação do Pentaho
 
 Para a instalação, tanto no Linux quanto no Windows, basta acessar o link abaixo:
 https://sourceforge.net/projects/pentaho/
 
-#### Configuração
+### Configuração do Pentaho
 
 Depois de instalado, vai ser criado uma pasta com o nome "pdi-ce", você vai abrir até chegar na pasta "data-integration". O arquivo executável para abrir no Windows é o "Spoon.bat". Já no Linux, você vai precisar abrir essa pasta (data-integration) no terminal e digitar "./spoon.sh".
 
