@@ -143,3 +143,5 @@ sample-zip-file.zip
 local-test*
 *.png
 *.jpg
+files/
+output/
