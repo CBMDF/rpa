@@ -238,7 +238,7 @@ status = check_update(csv_files_name, output_dir)
 
 if status == False:
     print('A base de dados públicos CNPJ já está atualizada.')
-    sys.exit()
+    sys.exit(1)
 
 # Download arquivos zip
 for i in range(len(urls)):
@@ -253,7 +253,7 @@ for i in range(len(urls)):
         print('Ocorreu um erro com download do arquivo {}'.format(
             zip_files_name[i]))
         shutil.rmtree(files_dir)
-        sys.exit()
+        sys.exit(1)
 
 # Extrair arquivos
 for i in range(len(zip_files_name)):
@@ -271,7 +271,7 @@ for i in range(len(zip_files_name)):
             zip_files_name[i]))
         # Remover todo diretório 'files_dir' em caso de erro na extração de um arquivo
         shutil.rmtree(files_dir)
-        sys.exit()
+        sys.exit(1)
 
 
 # Mover arquivos csv para diretório 'ouput_dir'
@@ -280,7 +280,7 @@ status = move_files(csv_files_name, files_dir, output_dir)
 if status == True:
     shutil.rmtree(files_dir)
 elif status == False:
-    sys.exit()
+    sys.exit(1)
 
 
 # Excluir arquivos que estavam em 'ouput_dir'
@@ -289,4 +289,4 @@ status = delete_files(output_dir, csv_files_name)
 if status == True:
     print('Operação realizada com sucesso.')
 elif status == False:
-    sys.exit()
+    sys.exit(1)
