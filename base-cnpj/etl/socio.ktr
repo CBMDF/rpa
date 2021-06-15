@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>socio</name>
+    <name>socios</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -454,9 +454,9 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>local</connection>
-    <schema>public</schema>
-    <table>socio</table>
+    <connection/>
+    <schema/>
+    <table/>
     <commit>10000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>

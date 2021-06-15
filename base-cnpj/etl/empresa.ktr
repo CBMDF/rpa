@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>empresa</name>
+    <name>empresas</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -454,9 +454,9 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>local</connection>
-    <schema>public</schema>
-    <table>empresa</table>
+    <connection/>
+    <schema/>
+    <table/>
     <commit>10000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -705,7 +705,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>80</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
