@@ -1,7 +1,15 @@
+@echo off
+
 SET currentdir=%~dp0
 
+pip install virtualenv
+virtualenv env
+
 call %currentdir%\env\Scripts\activate.bat
-python download_files.py
+
+pip install -r requirements.txt
+cls
+python download.py
 
 if "%ERRORLEVEL%"=="0" (
    call %currentdir%\init_pdi.bat
