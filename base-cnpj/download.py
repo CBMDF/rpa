@@ -91,6 +91,8 @@ def get_urls(elements):
     elements: Lista de classes
     '''
     urls = []
+    urls.append(elements_found[36].get('href'))
+
     for i in range(30):
         urls.append(elements_found[i].get('href'))
 
