@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>socios</name>
+    <name>qualif_socio</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -428,14 +427,65 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/05/26 13:49:40.781</created_date>
+    <created_date>2021/06/18 16:09:00.749</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/05/26 13:49:40.781</modified_date>
+    <modified_date>2021/06/18 16:09:00.749</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>database</name>
+    <server>${HOSTNAME}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${DATABASE}</database>
+    <port>${PORT}</port>
+    <username>${USERNAME}</username>
+    <password>${PASSWORD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
       <from>Text file input</from>
@@ -454,10 +504,10 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
-    <schema/>
-    <table/>
-    <commit>10000</commit>
+    <connection>database</connection>
+    <schema>cnpj</schema>
+    <table>qualificacao_socio</table>
+    <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
@@ -473,48 +523,12 @@
     <return_field/>
     <fields>
       <field>
-        <column_name>cnpj_basico</column_name>
-        <stream_name>cnpj_basico</stream_name>
+        <column_name>cod_socio</column_name>
+        <stream_name>cod_socio</stream_name>
       </field>
       <field>
-        <column_name>id_socio</column_name>
-        <stream_name>id_socio</stream_name>
-      </field>
-      <field>
-        <column_name>nome_socio</column_name>
-        <stream_name>nome_socio</stream_name>
-      </field>
-      <field>
-        <column_name>cnpj_cpf_socio</column_name>
-        <stream_name>cnpj_cpf_socio</stream_name>
-      </field>
-      <field>
-        <column_name>qualificacao_socio</column_name>
-        <stream_name>qualificacao_socio</stream_name>
-      </field>
-      <field>
-        <column_name>data_entrada_sociedade</column_name>
-        <stream_name>data_entrada_sociedade</stream_name>
-      </field>
-      <field>
-        <column_name>pais_socio_estrangeiro</column_name>
-        <stream_name>pais_socio_estrangeiro</stream_name>
-      </field>
-      <field>
-        <column_name>cpf_representante</column_name>
-        <stream_name>cpf_representante</stream_name>
-      </field>
-      <field>
-        <column_name>nome_representante</column_name>
-        <stream_name>nome_representante</stream_name>
-      </field>
-      <field>
-        <column_name>qualificacao_representante</column_name>
-        <stream_name>qualificacao_representante</stream_name>
-      </field>
-      <field>
-        <column_name>faixa_etaria_socio</column_name>
-        <stream_name>faixa_etaria_socio</stream_name>
+        <column_name>tp_socio</column_name>
+        <stream_name>tp_socio</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -526,7 +540,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>256</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -570,8 +584,8 @@
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Entry.Current.Directory}/csv-files</name>
-      <filemask>.*SOCIOCSV</filemask>
+      <name>${mainDirectory}/csv-files</name>
+      <filemask>.*QUALSCSV</filemask>
       <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
@@ -582,7 +596,7 @@
     </filters>
     <fields>
       <field>
-        <name>cnpj_basico</name>
+        <name>cod_socio</name>
         <type>Integer</type>
         <format>#</format>
         <currency>R$</currency>
@@ -597,22 +611,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>id_socio</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>nome_socio</name>
+        <name>tp_socio</name>
         <type>String</type>
         <format/>
         <currency>R$</currency>
@@ -621,128 +620,8 @@
         <nullif>-</nullif>
         <ifnull/>
         <position>-1</position>
-        <length>132</length>
+        <length>69</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>cnpj_cpf_socio</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>14</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>qualificacao_socio</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>data_entrada_sociedade</name>
-        <type>Date</type>
-        <format>yyyyMMdd</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>pais_socio_estrangeiro</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>cpf_representante</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>11</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>nome_representante</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>55</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>qualificacao_representante</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>faixa_etaria_socio</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
         <trim_type>none</trim_type>
         <repeat>N</repeat>
       </field>

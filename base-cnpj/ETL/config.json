@@ -1,0 +1,9 @@
+[
+    {
+      "hostname": "hostname",
+      "database": "database",
+      "port": "port",
+      "username": "username",
+      "password": "password"
+    }
+]

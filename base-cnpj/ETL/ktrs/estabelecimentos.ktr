@@ -437,14 +437,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>local</name>
-    <server>localhost</server>
+    <name>database</name>
+    <server>${HOSTNAME}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>dados</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <database>${DATABASE}</database>
+    <port>${PORT}</port>
+    <username>${USERNAME}</username>
+    <password>${PASSWORD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -463,7 +463,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
+        <attribute>${PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -741,7 +741,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>local</connection>
+    <connection>database</connection>
     <schema>cnpj</schema>
     <table>estabelecimentos</table>
     <commit>10000</commit>
@@ -933,7 +933,7 @@
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Entry.Current.Directory}/csv-files</name>
+      <name>${mainDirectory}/csv-files</name>
       <filemask>.*ESTABELE</filemask>
       <exclude_filemask/>
       <file_required>N</file_required>
