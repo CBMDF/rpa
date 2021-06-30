@@ -3,7 +3,10 @@
 SET currentdir=%~dp0
 
 pip install virtualenv
-virtualenv env
+
+if not exist "env" (
+   virtualenv env
+)
 
 call %currentdir%\env\Scripts\activate.bat
 
