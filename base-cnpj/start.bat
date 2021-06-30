@@ -15,5 +15,5 @@ cls
 python download.py
 
 if "%ERRORLEVEL%"=="0" (
-   call %currentdir%\init_pdi.bat
+   call %currentdir%\ETL\init_pdi.bat
 )
