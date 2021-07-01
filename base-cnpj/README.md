@@ -1,43 +1,6 @@
-# RPA - Dados públicos CNPJ
+# Carga Dados públicos CNPJ
 
-Realiza o download e descompacta os arquivos zip da base de dados públicos CNPJ.
-
-## Instalação
-
-Para instalação e criação do ambiente virtual, abra o terminal no diretório base-cnpj e digite os seguintes comandos:
-
-```console
-pip install virtualenv
-```
-
-```console
-virtualenv env
-```
-
-Ative o ambiente virtual e instale as dependências
-
-```console
-env\Scripts\activate
-(env) pip install -r requirements.txt
-```
-
-Para rodar o script
-
-```console
-python base_cnpj.py
-```
-
-Será criado o diretório output dentro da pasta base-cnpj, para receber os arquivos csv.
-
-## Agendador de Tarefas
-
-Ao criar uma nova tarefa no Agendador de Tarefas preencha os campos da aba ações conforme indicado abaixo:
-
-![alt text](https://i.imgur.com/iValV12.png)
-
-**- Programa/Script:** Endereço do executável pythonw.exe, encontrado dentro da pasta Scripts do ambiente virtual.
-**- Adicione argumentos:** Nome do script python.
-**- Iniciar em:** Endereço do diretório base-cnpj.
+Realiza por meio do python o download e descompactação dos arquivos zip da base de dados públicos CNPJ. Em seguida realiza a carga dos arquivos csv obtidos na descompactação para um bando de dados Postgresql, nesse processo é utilizado a ferramenta pentaho.
 
 ## ETL - Dados públicos CNPJ
 
