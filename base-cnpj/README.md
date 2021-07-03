@@ -3,7 +3,7 @@
 Realiza por meio do Python o download e descompactação dos arquivos zip da base de dados públicos CNPJ, em seguida, com o uso do Pentaho é realizado a carga dos arquivos com formato CSV obtidos na descompactação para um bando de dados PostgreSQL.
 
 ## Pré-requisitos
-É necessário que tenha instalado em sua máquina o [Python](https://www.python.org/downloads/) 3 ou superior, [PostgreSQL](https://www.postgresql.org/download/,) e a ferramenta [Pentaho](https://sourceforge.net/projects/pentaho/). Para o funcionamento do pentaho é necessário que tenha instalado em sua máquina o [JDK](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html), preferencialmente em sua versão mais recente.
+É necessário que tenha instalado em sua máquina o [Python](https://www.python.org/downloads/) 3 ou superior, [PostgreSQL](https://www.postgresql.org/download/) e a ferramenta [Pentaho](https://sourceforge.net/projects/pentaho/). Para o funcionamento do pentaho é necessário que tenha instalado em sua máquina o [JDK](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html), preferencialmente em sua versão mais recente.
 
 ## ETL - Configurações
 
