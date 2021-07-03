@@ -1,9 +1,9 @@
 [
     {
-      "hostname": "hostname",
-      "database": "database",
-      "port": "port",
-      "username": "username",
-      "password": "password"
+      "hostname": "<hostname>",
+      "database": "<database>",
+      "port": "<port>",
+      "username": "<username>",
+      "password": "<password>"
     }
 ]
