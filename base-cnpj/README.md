@@ -3,14 +3,14 @@
 Realiza por meio do Python o download e descompactação dos arquivos zip da base de dados públicos CNPJ, em seguida, com o uso do Pentaho é realizado a carga dos arquivos com formato CSV obtidos na descompactação para um bando de dados PostgreSQL.
 
 ## Pré-requisitos
-É necessário que tenha instalado em sua máquina o [Python](https://www.python.org/downloads/) 3 ou superior, [PostgreSQL](https://www.postgresql.org/download/) e a ferramenta [Pentaho](https://sourceforge.net/projects/pentaho/). Para o funcionamento do pentaho é necessário que tenha instalado em sua máquina o [JDK](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html), preferencialmente em sua versão mais recente.
+É necessário que tenha instalado em sua máquina o [Python](https://www.python.org/downloads/) 3 ou superior, [PostgreSQL](https://www.postgresql.org/download/) e a ferramenta [Pentaho](https://sourceforge.net/projects/pentaho/). Para o funcionamento do pentaho é necessário que tenha o [Java SE Development Kit](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html) instalado em sua máquina.
 
 ## ETL - Configurações
 
 ### Inicializador Pentaho
-Configure o arquivo **init_pdi.bat** localizado na pasta ETL, especificando o endereço do **Kitchen.bat**:
+Configure o arquivo **init_pdi.bat** localizado na pasta ETL, especificando o endereço da ferramenta de linha de comando **Kitchen.bat**:
 ```
-SET kitchen=C:\pentaho\data-integration\Kitchen.bat
+SET kitchen=<caminho_do_arquivo>\Kitchen.bat
 ```
 
 ### Banco de dados
