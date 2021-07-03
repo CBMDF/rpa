@@ -128,7 +128,7 @@ def check_update(urls, directory):
         if csv_file_name in files:
             control += 1
 
-    if control == len(csv_file_name):
+    if control == len(files):
         return False
     else:
         return True
@@ -149,12 +149,12 @@ elements_found = soup.find_all(class_='external-link')
 urls = get_urls(elements_found)  # Chamada da função get_urls
 
 # Download e extração dos arquivos zip
-directory = 'etl/csv-files'
+directory = 'ETL/csv-files'
 
 status = check_update(urls, directory) # Verificar necessidade da atualização
 if status == False:
     print('A base de dados públicos CNPJ já está atualizada.')
-    sys.exit(1)
+    sys.exit(0)
 else:
     delete_all_files(directory) # Deletar arquivos do diretório
 
