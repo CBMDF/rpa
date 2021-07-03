@@ -14,7 +14,7 @@ SET kitchen=<caminho_do_arquivo>\Kitchen.bat
 ```
 
 ### Banco de dados
-Crie um Schema com nome "cnpj" no banco de dados e configure o arquivo **config.json** localizado na pasta ETL, especificando as credenciais do banco de dados:
+Crie um Schema com nome "cnpj" em seu banco de dados e configure o arquivo **config.json** localizado na pasta ETL, especificando as credenciais do banco de dados:
 ```
 [
     {
