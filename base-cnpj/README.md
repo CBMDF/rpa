@@ -27,9 +27,7 @@ Crie um Schema com nome "cnpj" em seu banco de dados e configure o arquivo **con
 ]
 ```
 
-Para verificar o correto funcionamento do processo de ETL execute o **init_pdi.bat**, será gerado um **log.txt** com todo processo 
-de carga dos arquivos no formato CSV localizados em ETL/csv-files, reduzidos especificamente para esse teste. Verifique o conteúdo do log para descartar
-a existência de erros durante o processo.
+Para verificar o correto funcionamento do processo de ETL execute o **init_pdi.bat**, será realizado a carga de arquivos CSV com tamanhos reduzidos especificamente para esse teste. Caso ocorra erros durante o processo, verifique o arquivo **log.txt** gerado.
 
 ## Start
 O arquivo **start.bat** inicializa todo processo de download e carga dos arquivos de Dados publicos CNPJ.
