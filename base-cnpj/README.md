@@ -1,16 +1,31 @@
-# Carga Dados públicos CNPJ
+# RPA - Dados públicos CNPJ
 
-Realiza por meio do python o download e descompactação dos arquivos zip da base de dados públicos CNPJ. Em seguida realiza a carga dos arquivos csv obtidos na descompactação para um bando de dados Postgresql, nesse processo é utilizado a ferramenta pentaho.
+Realiza por meio do Python o download e descompactação dos arquivos zip da base de dados públicos CNPJ, em seguida, realiza a carga dos arquivos csv obtidos na descompactação para um bando de dados PostgreSQL, para realizar esse processo é utilizado a ferramenta pentaho.
 
-## ETL - Dados públicos CNPJ
+## Pré-requisitos
+Será necessário que tenha instalado em sua máquina o [Python](https://www.python.org/downloads/) 3 ou superior, [PostgreSQL](https://www.postgresql.org/download/,) e a ferramenta [Pentaho](https://sourceforge.net/projects/pentaho/). Para o funcionamento do pentaho é necessário que tenha instalado em sua máquina o [JDK](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html), preferencialmente em sua versão mais recente.
 
-Para a importação desses dados de CNPJ é utilizado o Pentaho, que subirá os arquivos para o banco de dados Postgresql. Para utilizar o Pentaho é necessário a instalação do Java jdk-8, e para a administração do Postgresql é preciso do pgAdmin4.
+## ETL - Configurações
 
-### Instalação do Java JDK-8
+### Inicializador Pentaho
+Configure o **init_pdi.bat** localizado na pasta ETL, especificando o endereço do Kitchen.bat:
+```
+SET kitchen=C:\pentaho\data-integration\Kitchen.bat
+```
 
-Para a instalação, tanto no Linux quanto no Windows, basta acessar o link abaixo:
-
-<https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html>
+### Banco de dados
+Configure o arquivo **config.json** localizado na pasta ETL, especificando as credenciais do banco de dados:
+```
+[
+    {
+      "hostname": "<hostname>",
+      "database": "<database>",
+      "port": "<port>",
+      "username": "<username>",
+      "password": "<password>"
+    }
+]
+```
 
 ## Instalação do Postgresql
 
@@ -49,11 +64,3 @@ Depois de instalado, vai ser criada uma pasta denominada "pdi-ce-9.1.0.0-324", a
 
 ### Configuração do Pentaho
 
-É necessário criar 6 transformações (empresas, estabelecimentos, socios, parametros, relatorio e )
-
-Vai ser preciso criar uma transformação para cada arquivo. Assim que você abre uma transformação o Pentaho te dá diversas opções de design, nesse caso vai ser preciso somente do Input que será a opção CSV file Input e do Output que será Table Output. Abrindo o CSV file Input você vai selecionar o arquivo .CSV, informar qual o delimitador e a forma de enclausuramento de dados usado no arquivo, desmarcar a opção de Header row e obter os campos. Depois de obitido, o próprio Pentaho dá nomes as colunas e coloca o tipo de dado, mas precisa alterar e colocar igual foi colocado no pgAdmin e apagar as outras informações que ele mesmo adicionou. Clicando nesse ícone do CSV file aparece algumas opções, clica na cria um conector output e liga no Table Output.
-
-Abrindo agora o Table Output na opção Geral é preciso colocar o nome da conexão, o tipo, nome do servidor, do banco, usuário e senha definidos no pgAdmin e marcar a terceira opção na opções avançadas. Depois disso é preciso escolher o nome do schema e da tabela para qual vão os dados, marcar a opção de especificar os campos do banco de dados para conferir o nome das colunas.
-É só executar a transformação e fazer a mesma coisa com todos os arquivos.
-
-Para facilitar e deixar mais automatizado, tem a opção de criar um Job para cada tipo de CNPJ para não ficar tão pesado em 1 arquivo só (empresa, estabelecimento e socio). Vai precisar de um Start, 10 transformações e um Sucess, conectar todos esses arquivos com um conector output e dentro das transformações selecionar o arquivo .ktr e executar o Job.
