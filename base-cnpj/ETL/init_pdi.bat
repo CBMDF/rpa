@@ -7,4 +7,4 @@ SET logfile="%currentdir%log.txt"
 echo. >> %logfile%
 echo. >> %logfile%
 
-"%kitchen%" /file:"%currentdir%\job_cnpj.kjb" /level:Basic >> %logfile%
+"%kitchen%" /file:"%currentdir%\job_cnpj.kjb" /level:Basic 2>> %logfile%
