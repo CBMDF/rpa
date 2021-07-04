@@ -128,7 +128,7 @@ def check_update(urls, directory):
         if csv_file_name in files:
             control += 1
 
-    if control == len(files):
+    if control == len(urls):
         return False
     else:
         return True
