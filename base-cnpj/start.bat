@@ -16,7 +16,10 @@ cls
 python download.py
 
 if "%ERRORLEVEL%"=="0" (
+   echo.
    echo Inicializando Pentaho...
    echo.
    call %currentdir%\ETL\init_pdi.bat
 )
+
+pause
