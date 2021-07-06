@@ -343,12 +343,7 @@
       <description/>
       <type>SQL</type>
       <attributes/>
-      <sql>TRUNCATE TABLE cnpj.socios RESTART IDENTITY;
-TRUNCATE TABLE cnpj.empresas RESTART IDENTITY;
-TRUNCATE TABLE cnpj.estabelecimentos RESTART IDENTITY;
-
-
-CREATE TABLE IF NOT EXISTS cnpj.socios
+      <sql>CREATE TABLE IF NOT EXISTS cnpj.socios
 (
     id_cod bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
     cnpj_basico integer,
@@ -412,7 +407,11 @@ CREATE TABLE IF NOT EXISTS cnpj.estabelecimentos
     CONSTRAINT estabelecimentos_pkey PRIMARY KEY (id_codigo)
 )
 
-TABLESPACE pg_default;</sql>
+TABLESPACE pg_default;
+
+TRUNCATE TABLE cnpj.socios RESTART IDENTITY;
+TRUNCATE TABLE cnpj.empresas RESTART IDENTITY;
+TRUNCATE TABLE cnpj.estabelecimentos RESTART IDENTITY;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
