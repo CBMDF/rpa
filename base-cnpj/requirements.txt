@@ -22,7 +22,7 @@ numpy==1.22.0
 opencv-python==4.5.1.48
 parso==0.8.1
 pickleshare==0.7.5
-Pillow==9.0.1
+Pillow==9.3.0
 prompt-toolkit==3.0.16
 PyAutoGUI==0.9.52
 pycodestyle==2.6.0
